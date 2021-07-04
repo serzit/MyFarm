@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Player : SingletonMonoBehaviour<Player>
@@ -32,6 +31,8 @@ public class Player : SingletonMonoBehaviour<Player>
     public bool idleLeft;
     public bool idleRight;
 
+    private Camera mainCamera;
+
     private Rigidbody2D rigidBody2D;
 
     private Direction playerDirection;
@@ -47,6 +48,9 @@ public class Player : SingletonMonoBehaviour<Player>
         base.Awake();
 
         rigidBody2D = GetComponent<Rigidbody2D>();
+
+        // get reference to main camera
+        mainCamera = Camera.main;
     }
 
     private void Update()
@@ -68,7 +72,6 @@ public class Player : SingletonMonoBehaviour<Player>
             isPickingRight, isPickingLeft, isPickingUp, isPickingDown,
             isSwingingToolRight, isSwingingToolLeft, isSwingingToolUp, isSwingingToolDown,
             false, false, false, false);
-
         #endregion
     }
 
@@ -136,7 +139,7 @@ public class Player : SingletonMonoBehaviour<Player>
             isRunning = false;
             isWalking = true;
             isIdle = false;
-            movementSpeed = Settings.isWalking;
+            movementSpeed = Settings.walkingSpeed;
         }
         else
         {
@@ -146,7 +149,6 @@ public class Player : SingletonMonoBehaviour<Player>
             movementSpeed = Settings.runningSpeed;
         }
     }
-
     private void ResetAnimationTriggers()
     {
         isUsingToolRight = false;
@@ -167,4 +169,12 @@ public class Player : SingletonMonoBehaviour<Player>
         isSwingingToolDown = false;
         toolEffect = ToolEffect.none;
     }
+
+    public Vector3 GetPlayerViewportPosition()
+    {
+        // Vector3 viewport position for player((0,0) viewport bottom left, (1,1) viewport top right
+        return mainCamera.WorldToViewportPoint(transform.position);
+        
+    }
+
 }
