@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public delegate void MovementDelegate(
     float inputX, float inputY,
@@ -13,6 +14,34 @@ public delegate void MovementDelegate(
 
 public static class EventHandler
 {
+    // Drop selected item event
+    public static event Action DropSelectedItemEvent;
+
+    public static void CallDropSelectedItemEvent()
+    {
+        if (DropSelectedItemEvent != null)
+            DropSelectedItemEvent();
+    }
+
+    // Remove selected item from inventory
+    public static event Action RemoveSelectedItemFromInventoryEvent;
+
+    public static void CallRemoveSelectedItemFromInventoryEvent()
+    {
+        if (RemoveSelectedItemFromInventoryEvent != null)
+            RemoveSelectedItemFromInventoryEvent();
+    }
+
+
+    // Harvest Action Effect Event
+    public static event Action<Vector3, HarvestActionEffect> HarvestActionEffectEvent;
+
+    public static void CallHarvestActionEffectEvent(Vector3 effectPosition, HarvestActionEffect harvestActionEffect)
+    {
+        if (HarvestActionEffectEvent != null)
+            HarvestActionEffectEvent(effectPosition, harvestActionEffect);
+    }
+
     // Inventory Updated Event
     public static event Action<InventoryLocation, List<InventoryItem>> InventoryUpdatedEvent;
 
@@ -20,6 +49,17 @@ public static class EventHandler
     {
         if (InventoryUpdatedEvent != null)
             InventoryUpdatedEvent(inventoryLocation, inventoryList);
+    }
+
+    // Instantiate crop prefabs
+    public static event Action InstantiateCropPrefabsEvent;
+
+    public static void CallInstantiateCropPrefabsEvent()
+    {
+        if (InstantiateCropPrefabsEvent != null)
+        {
+            InstantiateCropPrefabsEvent();
+        }
     }
 
     // Movement Event
@@ -44,5 +84,103 @@ public static class EventHandler
                 isPickingRight, isPickingLeft, isPickingUp, isPickingDown,
                 isSwingingToolRight, isSwingingToolLeft, isSwingingToolUp, isSwingingToolDown,
                 idleUp, idleDown, idleRight, idleLeft);
+    }
+
+    // Time Events
+    public static event Action<int, Season, int, string, int, int, int> AdvanceGameMinuteEvent;
+
+    // Advance game minute
+    public static void CallAdvanceGameMinuteEvent(int gameYear, Season gameSeason, int gameDay, string gameDayOfWeek, int gameHour, int gameMinute, int gameSeconds)
+    {
+        if (AdvanceGameMinuteEvent != null)
+        {
+            AdvanceGameMinuteEvent(gameYear, gameSeason, gameDay, gameDayOfWeek, gameHour, gameMinute, gameSeconds);
+        }
+    }
+
+    // Advance game hour
+    public static event Action<int, Season, int, string, int, int, int> AdvanceGameHourEvent;
+    public static void CallAdvanceGameHourEvent(int gameYear, Season gameSeason, int gameDay, string gameDayOfWeek, int gameHour, int gameMinute, int gameSeconds)
+    {
+        if (AdvanceGameHourEvent != null)
+        {
+            AdvanceGameHourEvent(gameYear, gameSeason, gameDay, gameDayOfWeek, gameHour, gameMinute, gameSeconds);
+        }
+    }
+
+    // Advance game day
+    public static event Action<int, Season, int, string, int, int, int> AdvanceGameDayEvent;
+    public static void CallAdvanceGameDayEvent(int gameYear, Season gameSeason, int gameDay, string gameDayOfWeek, int gameHour, int gameMinute, int gameSeconds)
+    {
+        if (AdvanceGameDayEvent != null)
+        {
+            AdvanceGameDayEvent(gameYear, gameSeason, gameDay, gameDayOfWeek, gameHour, gameMinute, gameSeconds);
+        }
+    }
+
+    // Advance game season
+    public static event Action<int, Season, int, string, int, int, int> AdvanceGameSeasonEvent;
+    public static void CallAdvanceGameSeasonEvent(int gameYear, Season gameSeason, int gameDay, string gameDayOfWeek, int gameHour, int gameMinute, int gameSeconds)
+    {
+        if (AdvanceGameSeasonEvent != null)
+        {
+            AdvanceGameSeasonEvent(gameYear, gameSeason, gameDay, gameDayOfWeek, gameHour, gameMinute, gameSeconds);
+        }
+    }
+
+    // Advance game year
+    public static event Action<int, Season, int, string, int, int, int> AdvanceGameYearEvent;
+    public static void CallAdvanceGameYearEvent(int gameYear, Season gameSeason, int gameDay, string gameDayOfWeek, int gameHour, int gameMinute, int gameSeconds)
+    {
+        if (AdvanceGameYearEvent != null)
+        {
+            AdvanceGameYearEvent(gameYear, gameSeason, gameDay, gameDayOfWeek, gameHour, gameMinute, gameSeconds);
+        }
+    }
+
+    // Scene Load Events - in the order they happen
+
+    // Before Scene Unload Fade Out Event
+    public static event Action BeforeSceneUnloadFadeOutEvent;
+
+    public static void CallBeforeSceneUnloadFadeOutEvent()
+    {
+        if (BeforeSceneUnloadFadeOutEvent != null)
+        {
+            BeforeSceneUnloadFadeOutEvent();
+        }
+    }
+
+    // Before Scene Unload Event
+    public static event Action BeforeSceneUnloadEvent;
+
+    public static void CallBeforeSceneUnloadEvent()
+    {
+        if (BeforeSceneUnloadEvent != null)
+        {
+            BeforeSceneUnloadEvent();
+        }
+    }
+
+    // After Scene Loaded Event
+    public static event Action AfterSceneLoadEvent;
+
+    public static void CallAfterSceneLoadEvent()
+    {
+        if (AfterSceneLoadEvent != null)
+        {
+            AfterSceneLoadEvent();
+        }
+    }
+
+    // After Scene Load Fade In Event
+    public static event Action AfterSceneLoadFadeInEvent;
+
+    public static void CallAfterSceneLoadFadeInEvent()
+    {
+        if (AfterSceneLoadFadeInEvent != null)
+        {
+            AfterSceneLoadFadeInEvent();
+        }
     }
 }

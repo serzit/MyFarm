@@ -56,8 +56,16 @@ PrefabInstance:
       value: Pumpkin
       objectReference: {fileID: 0}
     - target: {fileID: 2652728612948636154, guid: 9da016e0160d12f4b9cf2e01fea15f72, type: 3}
+      propertyPath: m_Size.x
+      value: 1.007839
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652728612948636154, guid: 9da016e0160d12f4b9cf2e01fea15f72, type: 3}
       propertyPath: m_Size.y
       value: 0.9431153
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652728612948636154, guid: 9da016e0160d12f4b9cf2e01fea15f72, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.003919482
       objectReference: {fileID: 0}
     - target: {fileID: 2652728612948636154, guid: 9da016e0160d12f4b9cf2e01fea15f72, type: 3}
       propertyPath: m_Offset.y

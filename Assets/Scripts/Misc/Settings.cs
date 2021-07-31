@@ -2,14 +2,30 @@ using UnityEngine;
 
 public static class Settings
 {
+    // Scenes
+    public const string PersistentScene = "PersistentScene";
+
     // Obscuring Item Fading - ObscuringItemFader
     public const float fadeInSeconds = 0.25f;
     public const float fadeOutSeconds = 0.35f;
     public const float targetAlpha = 0.45f;
 
+    // Tilemap
+    public const float gridCellSize = 1f; // grid cell size in unity units;
+    public static Vector2 cursorSize = Vector2.one;
+
+    // Player
+    public static float playerCentreYOffset = 0.875f;
+
     // Player Movement
     public const float runningSpeed = 5.333f;
     public const float walkingSpeed = 2.666f;
+    public static float useToolAnimationPause = 0.25f;
+    public static float liftToolAnimationPause = 0.4f;
+    public static float pickAnimationPause = 1f;
+    public static float afterUseToolAnimationPause = 0.2f;
+    public static float afterLiftToolAnimationPause = 0.4f;
+    public static float afterPickAnimationPause = 0.2f; 
 
     // Inventory
     public static int playerInitialInventoryCapacity = 24;
@@ -43,6 +59,21 @@ public static class Settings
     public static int idleDown;
     public static int idleLeft;
     public static int idleRight;
+
+    // Tools
+    public const string HoeingTool = "Hoe";
+    public const string ChoppingTool = "Axe";
+    public const string BreakingTool = "Pickaxe";
+    public const string ReapingTool = "Scythe";
+    public const string WateringTool = "Watering Can";
+    public const string CollectingTool = "Basket";
+
+    // Reaping
+    public const int maxCollidersToTestPerReapSwing = 15;
+    public const int maxTargetComponentsToDestroyPerReapSwing = 2;
+
+    // Time System
+    public const float secondsPerGameSecond = 0.012f;
 
     // Static constructor
     static Settings()
