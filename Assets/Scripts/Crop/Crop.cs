@@ -89,6 +89,13 @@ public class Crop : MonoBehaviour
                 animator.SetTrigger("harvestleft");
             }
         }
+
+        // is there a harvested sound
+        if (cropDetails.harvestSound != SoundName.none)
+        {
+            AudioManager.Instance.PlaySound(cropDetails.harvestSound);
+        }
+
         // Delete crop from grid properties
         gridPropertyDetails.seedItemCode = -1;
         gridPropertyDetails.growthDays = -1;

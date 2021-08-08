@@ -16,6 +16,9 @@ public class ItemPickUp : MonoBehaviour
             {
                 // add item to inventory
                 InventoryManager.Instance.AddItem(InventoryLocation.player, item, collision.gameObject);
+
+                // play pick up sound
+                AudioManager.Instance.PlaySound(SoundName.effectPickupSound);
             }
         }
     }

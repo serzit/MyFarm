@@ -166,6 +166,13 @@ public class TimeManager : SingletonMonoBehaviour<TimeManager>, ISaveable
         }
     }
 
+    public TimeSpan GetGameTime()
+    {
+        TimeSpan gameTime = new TimeSpan(gameHour, gameMinute, gameSecond);
+
+        return gameTime;
+    }
+
     public void TestAdvanceGameMinute()
     {
         for (int i = 0; i < 60; i++)

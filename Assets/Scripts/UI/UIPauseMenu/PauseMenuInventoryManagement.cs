@@ -76,7 +76,7 @@ public class PauseMenuInventoryManagement : MonoBehaviour
     private void InitialiseInventoryManagementSlots()
     {
         // clear inventory slots
-        for (int i = 0; i < Settings.playerMaxmimumInventoryCapacity; i ++)
+        for (int i = 0; i < Settings.playerMaximumInventoryCapacity; i ++)
         {
             inventoryManagementSlot[i].greyedOutImageGO.SetActive(false);
             inventoryManagementSlot[i].itemDetails = null;
@@ -86,7 +86,7 @@ public class PauseMenuInventoryManagement : MonoBehaviour
         }
 
         // grey out unavailable slots
-        for (int i = InventoryManager.Instance.inventoryListCapacityIntArray[(int)InventoryLocation.player]; i < Settings.playerMaxmimumInventoryCapacity; i++)
+        for (int i = InventoryManager.Instance.inventoryListCapacityIntArray[(int)InventoryLocation.player]; i < Settings.playerMaximumInventoryCapacity; i++)
         {
             inventoryManagementSlot[i].greyedOutImageGO.SetActive(true);
         }

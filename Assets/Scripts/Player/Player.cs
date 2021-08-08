@@ -374,6 +374,9 @@ public class Player : SingletonMonoBehaviour<Player>, ISaveable
 
             // Remove item from inventory
             EventHandler.CallRemoveSelectedItemFromInventoryEvent();
+
+            // make planting sound
+            AudioManager.Instance.PlaySound(SoundName.effectPlantingSound);
         }
     }
     private void ProcessPlayerClickInputCommodity(ItemDetails itemDetails)
@@ -501,31 +504,48 @@ public class Player : SingletonMonoBehaviour<Player>, ISaveable
 
     private void HoeGroundAtCursor(GridPropertyDetails gridPropertyDetails, Vector3Int playerDirection)
     {
+        //play sound
+        AudioManager.Instance.PlaySound(SoundName.effectHoe);
+
         // Trigger animation for digging
         StartCoroutine(HoeGroundAtCursorRoutine(playerDirection, gridPropertyDetails));
     }
     private void WaterGroundAtCursor(GridPropertyDetails gridPropertyDetails, Vector3Int playerDirection)
     {
+        //play sound
+        AudioManager.Instance.PlaySound(SoundName.effectWateringCan);
+
         // Trigger animation for watering
         StartCoroutine(WaterGroundAtCursorRoutine(playerDirection, gridPropertyDetails));
     }
     private void ReapInPlayerDirectionAtCursor(ItemDetails itemDetails, Vector3Int playerDirection)
     {
+        // sound effect played in UseToolInPlayerDirection method!
+
         // trigger animation for reaping
         StartCoroutine(ReapInPlayerDirectionAtCursorRoutine(itemDetails, playerDirection));
     }
     private void ChopInPlayerDirection(GridPropertyDetails gridPropertyDetails, ItemDetails equippedItemDetails, Vector3Int playerDirection)
     {
+        //play sound
+        AudioManager.Instance.PlaySound(SoundName.effectAxe);
+
         // Trigger animation
         StartCoroutine(ChopInPlayerDirectionRoutine(gridPropertyDetails, equippedItemDetails, playerDirection));
     }
     private void CollectInPlayerDirection(GridPropertyDetails gridPropertyDetails, ItemDetails equippedItemDetails, Vector3Int playerDirection)
     {
+        //play sound
+        AudioManager.Instance.PlaySound(SoundName.effectBasket);
+
         StartCoroutine(CollectInPlayerDirectionRoutine(gridPropertyDetails, equippedItemDetails, playerDirection));
     }
 
     private void BreakInPlayerDirection(GridPropertyDetails gridPropertyDetails, ItemDetails equippedItemDetails, Vector3Int playerDirection)
     {
+        //play sound
+        AudioManager.Instance.PlaySound(SoundName.effectPickaxe);
+
         StartCoroutine(BreakInPlayerDirectionRoutine(gridPropertyDetails, equippedItemDetails, playerDirection));
     }
     private void UseToolInPlayerDirection(ItemDetails equippedItemDetails, Vector3Int playerDirection)
@@ -584,6 +604,9 @@ public class Player : SingletonMonoBehaviour<Player>, ISaveable
                             itemArray[i].transform.position.z);
                         // Trigger reaping effect
                         EventHandler.CallHarvestActionEffectEvent(effectPosition, HarvestActionEffect.reaping);
+
+                        //play sound
+                        AudioManager.Instance.PlaySound(SoundName.effectScythe);
 
                         Destroy(itemArray[i].gameObject);
 

@@ -582,6 +582,33 @@ public class GridPropertiesManager : SingletonMonoBehaviour<GridPropertiesManage
     }
 
     /// <summary>
+    /// for sceneName this method returns a Vector2Int with the grid dimensions for that scene or Vector2Int.zero if scene not foind
+    /// </summary>
+    public bool GetGridDimensions(SceneName sceneName, out Vector2Int gridDimensions, out Vector2Int gridOrigin)
+    {
+        gridDimensions = Vector2Int.zero;
+        gridOrigin = Vector2Int.zero;
+
+        // loop through scenes
+        foreach (SO_GridProperties so_GridProperties in so_gridPropertiesArray)
+        {
+            if (so_GridProperties.sceneName == sceneName)
+            {
+                gridDimensions.x = so_GridProperties.gridWidth;
+                gridDimensions.y = so_GridProperties.gridHeight;
+
+                gridOrigin.x = so_GridProperties.originX;
+                gridOrigin.y = so_GridProperties.originY;
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /// <summary>
     /// Get the grid property details for the tile at (gridX, gridY). If no grid property details exist null is returned and can assume that all grid property
     /// details values are null or false
     /// </summary>
